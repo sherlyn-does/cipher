@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: 'Matrix';
+  src: url('/fonts/matrix.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --font-display: 'Matrix', 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+  --font-sans: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Matrix palette */
+  --color-matrix: var(--matrix);
+  --color-matrix-dim: var(--matrix-dim);
+  --color-matrix-glow: var(--matrix-glow);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  color-scheme: dark;
+
+  --background: #050705;
+  --foreground: #c8f7d0;
+
+  --card: #080d08;
+  --card-foreground: #c8f7d0;
+  --popover: #080d08;
+  --popover-foreground: #c8f7d0;
+
+  --primary: #00ff41;
+  --primary-foreground: #030503;
+
+  --secondary: #0d1f0d;
+  --secondary-foreground: #b6f0bf;
+
+  --muted: #0c140c;
+  --muted-foreground: #6fae78;
+
+  --accent: #0d3b0d;
+  --accent-foreground: #d6ffdd;
+
+  --destructive: #ff5f56;
+
+  --border: #123a17;
+  --input: #123a17;
+  --ring: #00ff41;
+
+  /* Matrix palette */
+  --matrix: #00ff41;
+  --matrix-dim: #2c7a3a;
+  --matrix-glow: rgba(0, 255, 65, 0.55);
+
+  --radius: 0.4rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-mono);
+  }
+  ::selection {
+    background: var(--matrix);
+    color: #030503;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-glow {
+    text-shadow: 0 0 4px var(--matrix-glow), 0 0 12px var(--matrix-glow);
+  }
+  .text-glow-strong {
+    text-shadow: 0 0 6px var(--matrix-glow), 0 0 18px var(--matrix-glow),
+      0 0 42px var(--matrix-glow);
+  }
+  .box-glow {
+    box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.25),
+      0 0 22px -6px var(--matrix-glow);
+  }
+  .box-glow-hover {
+    box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.5),
+      0 0 34px -4px var(--matrix-glow);
+  }
+  .bg-scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 65, 0.04) 0px,
+      rgba(0, 255, 65, 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+}
+
+/* Hide the native cursor when the custom cursor is active (pointer devices only) */
+@media (hover: hover) and (pointer: fine) {
+  .cipher-custom-cursor,
+  .cipher-custom-cursor * {
+    cursor: none;
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

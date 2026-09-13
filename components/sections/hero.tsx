@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { ArrowRight, Terminal } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { MagneticButton } from '../magnetic-button'
 import CipherLogo from '../cipher-logo'
 
@@ -18,16 +18,6 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto -mt-10 w-full max-w-6xl px-5 pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)]/60 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--matrix)]"
-        >
-          <Terminal size={14} />
-          Student Association · CSE Department
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

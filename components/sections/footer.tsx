@@ -15,9 +15,7 @@ export function Footer() {
           <div className="font-display text-2xl text-[var(--matrix)] text-glow">
             CIPHER
           </div>
-          <p className="mt-2 font-mono text-xs text-muted-foreground">
-            Student Association · Computer Science &amp; Engineering
-          </p>
+          
         </div>
 
         <div className="flex items-center gap-3">

@@ -54,21 +54,7 @@ const css = `
 }
 .cl-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;}
 
-/* ── chrome (never blocks the pointer) ── */
-.cl-chrome{position:absolute;inset:0;z-index:2;pointer-events:none;
-  color:rgba(180,255,200,.72);text-transform:uppercase;}
-.cl-tag{position:absolute;top:27px;right:30px;font-size:10px;letter-spacing:.22em;
-  color:rgba(180,255,200,.45);}
-.cl-hint{position:absolute;bottom:26px;left:30px;font-size:10px;letter-spacing:.2em;
-  color:rgba(180,255,200,.5);}
-.cl-hint b{color:#00ff41;font-weight:600;}
-.cl-status{position:absolute;bottom:26px;right:30px;font-size:10px;letter-spacing:.2em;
-  font-family:'Space Mono',ui-monospace,monospace;color:rgba(180,255,200,.5);}
 
-@media (max-width:600px){
-  .cl-tag,.cl-hint,.cl-status{font-size:9px;}
-}
-`;
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
@@ -346,13 +332,7 @@ export default function CipherLogo({
     <div className="cl-root" ref={rootRef} style={{ height }}>
       <style>{css}</style>
       <canvas className="cl-canvas" ref={canvasRef} />
-      <div className="cl-chrome">
-        <div className="cl-tag">{tagline}</div>
-        <div className="cl-hint">
-          Hover the glyphs — <b>they decrypt</b>
-        </div>
-        <div className="cl-status">SYS::ACTIVE</div>
-      </div>
+      
     </div>
   );
 }

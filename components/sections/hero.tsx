@@ -2,19 +2,22 @@
 
 import { motion } from 'motion/react'
 import { ArrowRight, Terminal } from 'lucide-react'
-import { MatrixRain } from '../matrix-rain'
 import { MagneticButton } from '../magnetic-button'
+import CipherLogo from '../cipher-logo'
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center overflow-hidden"
     >
-      <MatrixRain opacity={0.14} />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#050705]/40 via-transparent to-[#050705]" />
+      {/* Interactive ASCII wordmark centerpiece */}
+      <div className="relative h-[58vh] min-h-[360px] w-full">
+        <CipherLogo height="100%" tagline="CSE Student Association" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#050705]" />
+      </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 pt-28 pb-16">
+      <div className="relative mx-auto -mt-10 w-full max-w-6xl px-5 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,12 +32,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl font-display text-5xl leading-[0.95] text-foreground text-glow sm:text-6xl md:text-7xl lg:text-8xl"
+          className="max-w-4xl font-display text-3xl leading-[0.95] text-foreground text-glow sm:text-4xl md:text-5xl"
         >
-          <span className="text-[var(--matrix)]">CIPHER</span>
-          <span className="mt-2 block text-3xl text-foreground sm:text-4xl md:text-5xl">
-            Student Association of Computer Science &amp; Engineering
-          </span>
+          Student Association of Computer Science &amp; Engineering
         </motion.h1>
 
         <motion.p

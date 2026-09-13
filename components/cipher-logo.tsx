@@ -53,8 +53,7 @@ const css = `
   cursor:crosshair;
 }
 .cl-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;}
-
-
+`;
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
@@ -65,14 +64,9 @@ type CipherLogoProps = {
    * fixed value like "45vh" / "400px" to reuse this as a persistent header
    * logo on every page. Defaults to a full-viewport hero. */
   height?: string;
-  /** Small tagline shown top-right, e.g. "CSE STUDENT ASSOCIATION". */
-  tagline?: string;
 };
 
-export default function CipherLogo({
-  height = "100vh",
-  tagline = "CSE Student Association",
-}: CipherLogoProps) {
+export default function CipherLogo({ height = "100vh" }: CipherLogoProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -332,7 +326,6 @@ export default function CipherLogo({
     <div className="cl-root" ref={rootRef} style={{ height }}>
       <style>{css}</style>
       <canvas className="cl-canvas" ref={canvasRef} />
-      
     </div>
   );
 }

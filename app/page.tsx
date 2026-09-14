@@ -8,6 +8,7 @@ import { EasterEgg } from '@/components/easter-egg'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/sections/hero'
 import { About } from '@/components/sections/about'
+import { FocusAreas } from '@/components/sections/focus-areas'
 import { Leadership } from '@/components/sections/leadership'
 import { Testimonials } from '@/components/sections/testimonials'
 import { Events } from '@/components/sections/events'
@@ -40,6 +41,7 @@ export default function Page() {
         <Navbar />
         <Hero />
         <About />
+        <FocusAreas />
         <Leadership />
         <Testimonials />
         <Events />

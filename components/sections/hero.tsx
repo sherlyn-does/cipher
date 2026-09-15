@@ -52,7 +52,6 @@ export function Hero() {
             Explore Events
           </MagneticButton>
         </motion.div>
-
       </div>
     </section>
   )

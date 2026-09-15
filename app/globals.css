@@ -5,6 +5,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Matrix';
+  src: url('/fonts/matrix.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 
 
@@ -101,6 +109,9 @@
   .font-display {
     font-family: var(--font-display);
   }
+  .font-matrix {
+  font-family: 'Matrix', monospace;
+ }
   .text-glow {
     text-shadow: 0 0 4px var(--matrix-glow), 0 0 12px var(--matrix-glow);
   }

@@ -41,8 +41,8 @@ export default function Page() {
         <Hero />
         <About />
         <Leadership />
-        <Testimonials />
         <Events />
+        <Testimonials />
         <Join />
         <Footer />
       </motion.main>

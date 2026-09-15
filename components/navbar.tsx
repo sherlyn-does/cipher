@@ -31,11 +31,11 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="#top" className="flex items-center" aria-label="CIPHER home">
+        <a href="#top" className="-ml-2 flex items-center md:-ml-4" aria-label="CIPHER home">
           <img
             src="/images/cipher-logo.png"
             alt="CIPHER"
-            className="h-10 w-auto md:h-12"
+            className="h-16 w-auto md:h-20"
           />
         </a>
 

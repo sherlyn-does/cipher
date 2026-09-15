@@ -17,11 +17,11 @@ export function Join() {
 
       <div className="relative mx-auto max-w-3xl px-5 text-center">
         <div className="mb-4 font-mono text-xs uppercase tracking-[0.4em] text-[var(--matrix)]">
-          // access request
+          // join
         </div>
         <ScrambleText
           as="h2"
-          text="Decrypt your potential"
+          text="Join Cipher"
           className="font-display text-4xl leading-tight text-foreground text-glow sm:text-5xl md:text-6xl"
         />
         <Reveal delay={0.15}>
@@ -34,7 +34,7 @@ export function Join() {
         <Reveal delay={0.3}>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <MagneticButton href="mailto:cipher@cse.edu">
-              Request Access <ArrowRight size={16} />
+              Join <ArrowRight size={16} />
             </MagneticButton>
             <MagneticButton href="#top" variant="outline">
               Back to Top

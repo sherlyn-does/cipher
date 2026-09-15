@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const LINKS = [
+  { label: 'Home', href: '#top' },
   { label: 'About', href: '#about' },
-  { label: 'Focus', href: '#focus' },
   { label: 'Leadership', href: '#leadership' },
   { label: 'Events', href: '#events' },
   { label: 'Join', href: '#join' },

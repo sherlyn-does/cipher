@@ -13,7 +13,7 @@ export function Hero() {
     >
       {/* Interactive ASCII wordmark centerpiece */}
       <div className="relative h-[58vh] min-h-[360px] w-full">
-        <CipherLogo height="100%" tagline="CSE Student Association" />
+        <CipherLogo height="100%" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#050705]" />
       </div>
 
@@ -24,7 +24,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl font-display text-3xl leading-[0.95] text-foreground text-glow sm:text-4xl md:text-5xl"
+          className="max-w-3xl font-display text-xl leading-[1.05] tracking-tight text-foreground text-glow sm:text-2xl md:text-3xl"
         >
           Student Association of Computer Science &amp; Engineering
         </motion.h1>

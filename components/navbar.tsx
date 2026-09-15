@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 
 const LINKS = [
@@ -33,10 +34,17 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <a
           href="#top"
-          className="font-display text-2xl leading-none text-[var(--matrix)] text-glow"
+          className="flex items-center leading-none"
           aria-label="CIPHER home"
         >
-          CIPHER
+          <Image
+            src="/cipher-logo.png"
+            alt="CIPHER"
+            width={160}
+            height={107}
+            priority
+            className="h-11 w-auto drop-shadow-[0_0_12px_rgba(0,120,255,0.45)] md:h-14"
+          />
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

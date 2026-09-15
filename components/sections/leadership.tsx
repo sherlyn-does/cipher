@@ -1,26 +1,76 @@
-import { OrbitCarousel, type CarouselImage } from '../orbit-carousel'
+import Image from 'next/image'
+import { SectionHeading } from '../section-heading'
+import { Reveal, StaggerGroup, StaggerItem } from '../reveal'
 
-const CARDS: CarouselImage[] = [
-  { src: '/carousel/slot-1.png', alt: 'Leadership portrait placeholder 1', caption: '01' },
-  { src: '/carousel/slot-2.png', alt: 'Leadership portrait placeholder 2', caption: '02' },
-  { src: '/carousel/slot-3.png', alt: 'Leadership portrait placeholder 3', caption: '03' },
-  { src: '/carousel/slot-4.png', alt: 'Leadership portrait placeholder 4', caption: '04' },
-  { src: '/carousel/slot-5.png', alt: 'Leadership portrait placeholder 5', caption: '05' },
-  { src: '/carousel/slot-6.png', alt: 'Leadership portrait placeholder 6', caption: '06' },
+const BEARERS = [
+  {
+    role: 'President',
+    name: 'Elston Herold Pereira',
+    photo: '/leadership/president.png',
+  },
+  {
+    role: 'Vice President',
+    name: 'Raynell Lewis',
+    photo: '/leadership/vice-president.png',
+  },
+  {
+    role: 'Secretary',
+    name: 'Chaitra R M',
+    photo: '/leadership/secretary.png',
+  },
+  {
+    role: 'Treasurer',
+    name: 'Nazmin Ziya',
+    photo: '/leadership/treasurer.png',
+  },
+  {
+    role: 'Joint Treasurer',
+    name: 'Jeslin Ninora',
+    photo: '/leadership/joint-treasurer.png',
+  },
 ]
 
 export function Leadership() {
   return (
     <section
       id="leadership"
-      className="relative border-t border-[var(--border)]"
+      className="relative border-t border-[var(--border)] py-24"
     >
-      <OrbitCarousel
-        images={CARDS}
-        eyebrow="governance"
-        title="Leadership Structure"
-        description="Drag to explore the collective. Select a card to expand it."
-      />
+      <div className="mx-auto max-w-7xl px-5">
+        <Reveal>
+          <SectionHeading label="governance" title="Leadership Structure" />
+        </Reveal>
+
+        <StaggerGroup className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          {BEARERS.map((b) => (
+            <StaggerItem key={b.role}>
+              <div
+                data-cursor="lens"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)]/50 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow"
+              >
+                <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#050705]">
+                  <Image
+                    src={b.photo || "/placeholder.svg"}
+                    alt={`${b.name}, ${b.role}`}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050705] via-transparent to-transparent" />
+                </div>
+                <div className="flex flex-col items-center gap-1 px-4 py-5 text-center">
+                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--matrix)]">
+                    {b.role}
+                  </span>
+                  <span className="font-display text-lg leading-tight text-foreground">
+                    {b.name}
+                  </span>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </div>
     </section>
   )
 }

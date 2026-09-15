@@ -317,8 +317,7 @@ function DecryptReveal({ onResolved }: { onResolved: () => void }) {
     >
       <div
         ref={containerRef}
-        className="font-display flex select-none text-[clamp(3.5rem,20vw,16rem)] leading-none tracking-tight text-[var(--matrix)] text-glow-strong"
-        aria-label="CIPHER"
+        className="font-matrix flex select-none text-[clamp(3.5rem,20vw,16rem)] leading-none tracking-tight text-[var(--matrix)] text-glow-strong"
       >
         {display.map((ch, i) => (
           <span

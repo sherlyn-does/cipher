@@ -53,15 +53,7 @@ export function Hero() {
           </MagneticButton>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 flex items-center gap-3 font-mono text-xs text-[var(--matrix-dim)]"
-        >
-          <span className="h-8 w-px animate-pulse bg-[var(--matrix)]" />
-          scroll to decrypt more
-        </motion.div>
+        
       </div>
     </section>
   )

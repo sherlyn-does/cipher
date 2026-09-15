@@ -1,10 +1,10 @@
-import { Code2, Users, Camera, Mail } from 'lucide-react'
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react'
 
 const SOCIALS = [
-  { icon: Code2, href: '#', label: 'GitHub' },
-  { icon: Users, href: '#', label: 'LinkedIn' },
-  { icon: Camera, href: '#', label: 'Instagram' },
   { icon: Mail, href: 'mailto:cipher.cse@college.edu', label: 'Email' },
+  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Github, href: '#', label: 'GitHub' },
 ]
 
 export function Footer() {

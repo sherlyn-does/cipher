@@ -7,22 +7,16 @@ import { Reveal } from '../reveal'
 
 const EVENTS = [
   {
-    tag: 'Hackathon',
-    title: 'CIPHER Hack — 24hr Build Sprint',
-    status: 'Upcoming',
-    desc: 'A day-long hackathon where teams ship a working prototype from scratch.',
+    tag: 'Branch Gala',
+    title: 'Lumière — The Gala',
+    status: '29 Oct 2025',
+    desc: 'The CSE branch entry programme at Kalam Auditorium, themed “Where Glam Meets Glow.” Organised by the Cipher Association with coordinated red, gold and black décor, it welcomed students into the department and reinforced a shared sense of collective identity.',
   },
   {
-    tag: 'Workshop',
-    title: 'Intro to Systems Programming',
-    status: 'Planned',
-    desc: 'Hands-on session covering memory, processes, and low-level debugging.',
-  },
-  {
-    tag: 'Tech Talk',
-    title: 'Careers in Security & AI',
-    status: 'Planned',
-    desc: 'Industry speakers on breaking into modern computing fields.',
+    tag: 'Competition',
+    title: 'PROMPT OPS-2K26',
+    status: '25 Mar 2026',
+    desc: 'A technical competition on prompt engineering and AI tools by the AgentBlazer Club and Cipher. Track 1 (1st Year) covered invitation, logo and image recreation; Track 2 (2nd Year) tested JSON conversion, Python debugging and a Gemini AI security prompt challenge.',
   },
 ]
 
@@ -64,7 +58,7 @@ export function Events() {
           </div>
         </Reveal>
 
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
           {EVENTS.map((e, i) => (
             <Reveal key={e.title} delay={i * 0.1}>
               <article

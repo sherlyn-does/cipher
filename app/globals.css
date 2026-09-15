@@ -1,19 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-  font-family: 'Matrix';
-  src: url('/fonts/matrix.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+
+
 
 @theme inline {
-  --font-display: 'Matrix', 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
   --font-sans: 'JetBrains Mono', ui-monospace, monospace;
 

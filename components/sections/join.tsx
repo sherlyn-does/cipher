@@ -33,7 +33,7 @@ export function Join() {
         </Reveal>
         <Reveal delay={0.3}>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <MagneticButton href="mailto:cipher@cse.edu">
+            <MagneticButton href="mailto:cipher.cse@college.edu">
               Join <ArrowRight size={16} />
             </MagneticButton>
             <MagneticButton href="#top" variant="outline">

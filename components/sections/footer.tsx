@@ -4,7 +4,7 @@ const SOCIALS = [
   { icon: Code2, href: '#', label: 'GitHub' },
   { icon: Users, href: '#', label: 'LinkedIn' },
   { icon: Camera, href: '#', label: 'Instagram' },
-  { icon: Mail, href: 'mailto:cipher@cse.edu', label: 'Email' },
+  { icon: Mail, href: 'mailto:cipher.cse@college.edu', label: 'Email' },
 ]
 
 export function Footer() {

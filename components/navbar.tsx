@@ -31,7 +31,7 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="#top" className="flex items-center" aria-label="CIPHER home">
+        <a href="#top" className="flex items-center pl-2 md:pl-4" aria-label="CIPHER home">
           <img
             src="/images/cipher-logo.png"
             alt="CIPHER"

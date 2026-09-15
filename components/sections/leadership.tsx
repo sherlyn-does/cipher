@@ -1,18 +1,33 @@
-import { CheckCircle2 } from 'lucide-react'
+import Image from 'next/image'
 import { SectionHeading } from '../section-heading'
 import { Reveal, StaggerGroup, StaggerItem } from '../reveal'
 
-const POINTS = [
-  'Annual elections conducted under the guidance of the Head of Department and Faculty Coordinator.',
-  'Elected office bearers: President, Secretary, and other key roles.',
-  'A chance for students to develop leadership skills, take responsibility, and drive the association forward.',
-]
-
 const BEARERS = [
-  { role: 'President', name: 'To be announced' },
-  { role: 'Secretary', name: 'To be announced' },
-  { role: 'Treasurer', name: 'To be announced' },
-  { role: 'Tech Lead', name: 'To be announced' },
+  {
+    role: 'President',
+    name: 'Elston Herold Pereira',
+    photo: '/leadership/president.png',
+  },
+  {
+    role: 'Vice President',
+    name: 'Raynell Lewis',
+    photo: '/leadership/vice-president.png',
+  },
+  {
+    role: 'Secretary',
+    name: 'Chaitra R M',
+    photo: '/leadership/secretary.png',
+  },
+  {
+    role: 'Treasurer',
+    name: 'Nazmin Ziya',
+    photo: '/leadership/treasurer.png',
+  },
+  {
+    role: 'Joint Treasurer',
+    name: 'Jeslin Ninora',
+    photo: '/leadership/joint-treasurer.png',
+  },
 ]
 
 export function Leadership() {
@@ -21,49 +36,40 @@ export function Leadership() {
       id="leadership"
       className="relative border-t border-[var(--border)] py-24"
     >
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto max-w-7xl px-5">
         <Reveal>
           <SectionHeading label="governance" title="Leadership Structure" />
         </Reveal>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2">
-          <Reveal>
-            <ul className="space-y-5">
-              {POINTS.map((p) => (
-                <li key={p} className="flex gap-3">
-                  <CheckCircle2
-                    className="mt-0.5 shrink-0 text-[var(--matrix)]"
-                    size={20}
+        <StaggerGroup className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          {BEARERS.map((b) => (
+            <StaggerItem key={b.role}>
+              <div
+                data-cursor="lens"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)]/50 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow"
+              >
+                <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#050705]">
+                  <Image
+                    src={b.photo || "/placeholder.svg"}
+                    alt={`${b.name}, ${b.role}`}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
                   />
-                  <span className="font-mono text-base leading-relaxed text-muted-foreground">
-                    {p}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <StaggerGroup className="grid grid-cols-2 gap-4">
-            {BEARERS.map((b) => (
-              <StaggerItem key={b.role}>
-                <div
-                  data-cursor="lens"
-                  className="group flex h-full flex-col items-center rounded-lg border border-[var(--border)] bg-[var(--card)]/50 p-6 text-center transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow"
-                >
-                  <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-[var(--border)] bg-[#050705] font-display text-3xl text-[var(--matrix)] transition-colors group-hover:border-[var(--matrix)] group-hover:text-glow">
-                    {b.role.charAt(0)}
-                  </div>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050705] via-transparent to-transparent" />
+                </div>
+                <div className="flex flex-col items-center gap-1 px-4 py-5 text-center">
                   <span className="font-mono text-xs uppercase tracking-widest text-[var(--matrix)]">
                     {b.role}
                   </span>
-                  <span className="mt-1 font-mono text-sm text-muted-foreground">
+                  <span className="font-display text-lg leading-tight text-foreground">
                     {b.name}
                   </span>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
       </div>
     </section>
   )

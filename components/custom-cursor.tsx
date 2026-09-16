@@ -70,7 +70,7 @@ export function CustomCursor() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[100]"
+      className="pointer-events-none fixed inset-0 z-[9999]"
       style={{ opacity: visible ? 1 : 0, transition: 'opacity 200ms ease' }}
     >
       <div

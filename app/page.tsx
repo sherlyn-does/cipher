@@ -5,11 +5,11 @@ import { motion } from 'motion/react'
 import { IntroSequence } from '@/components/intro-sequence'
 import { CustomCursor } from '@/components/custom-cursor'
 import { EasterEgg } from '@/components/easter-egg'
+import { IdleHint } from '@/components/idle-hint'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/sections/hero'
 import { About } from '@/components/sections/about'
 import { Leadership } from '@/components/sections/leadership'
-import { Testimonials } from '@/components/sections/testimonials'
 import { Events } from '@/components/sections/events'
 import { Join } from '@/components/sections/join'
 import { Footer } from '@/components/sections/footer'
@@ -29,6 +29,7 @@ export default function Page() {
     <>
       <CustomCursor />
       <EasterEgg />
+      <IdleHint />
 
       {!introDone && <IntroSequence onComplete={() => setIntroDone(true)} />}
 
@@ -42,7 +43,6 @@ export default function Page() {
         <About />
         <Leadership />
         <Events />
-        <Testimonials />
         <Join />
         <Footer />
       </motion.main>

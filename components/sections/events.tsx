@@ -1,9 +1,28 @@
 'use client'
 
-import Image from 'next/image'
 import { Calendar, ArrowUpRight } from 'lucide-react'
 import { SectionHeading } from '../section-heading'
 import { Reveal } from '../reveal'
+
+const ACTIVITIES = [
+  { title: 'Applied Machine Learning', href: 'https://sjec.ac.in/cipher/activity/applied-machine-learning' },
+  { title: 'Industrial Visit', href: 'https://sjec.ac.in/cipher/activity/industrial-visit-1' },
+  { title: 'LaTeX Tool', href: 'https://sjec.ac.in/cipher/activity/latex-tool' },
+  { title: 'Robotic Process Automation using UiPath', href: 'https://sjec.ac.in/cipher/activity/robotic-process-automation-design-and-development-using-uipath' },
+  { title: 'HackTO Future 20', href: 'https://sjec.ac.in/cipher/activity/hackto-future-20' },
+  { title: 'How to Win at the Sport of Programming', href: 'https://sjec.ac.in/cipher/activity/how-to-win-at-the-sport-of-programming' },
+  { title: 'Introduction to Google Crowdsource', href: 'https://sjec.ac.in/cipher/activity/introduction-to-google-crowdsource' },
+  { title: 'Educational Session on GitHub', href: 'https://sjec.ac.in/cipher/activity/educational-session-on-github' },
+  { title: 'Industrial Visit', href: 'https://sjec.ac.in/cipher/activity/industrial-visit' },
+  { title: 'UDAAN Mock Interview', href: 'https://sjec.ac.in/cipher/activity/udaan-mock-interview' },
+  { title: 'Freshers Onboarding Programme', href: 'https://sjec.ac.in/cipher/activity/freshers-onboarding-programme' },
+  { title: 'Projects Funded by KSCST', href: 'https://sjec.ac.in/cipher/activity/projects-funded-by-kscst' },
+  { title: 'Generative AI Tools for Research', href: 'https://sjec.ac.in/cipher/activity/generative-ai-tools-for-research' },
+  { title: 'Introduction to Blockchain: Solidity Workshop', href: 'https://sjec.ac.in/cipher/activity/introduction-to-blockchain-beginners-worskhop-on-solidity-programming' },
+  { title: 'Star UML', href: 'https://sjec.ac.in/cipher/activity/star-uml' },
+  { title: 'Generative AI: Custom Solutions using OpenAI', href: 'https://sjec.ac.in/cipher/activity/generative-ai-grafting-custom-solutions-for-your-needs-using-open-ai' },
+  { title: 'React.js and Node.js Workshop', href: 'https://sjec.ac.in/cipher/activity/reactjs-and-nodejs-workshop' },
+]
 
 const EVENTS = [
   {
@@ -28,37 +47,7 @@ export function Events() {
           <SectionHeading label="activities" title="Events & Workshops" />
         </Reveal>
 
-        {/* Big visual centerpiece */}
-        <Reveal delay={0.1}>
-          <div
-            data-cursor="lens"
-            className="group relative mt-12 overflow-hidden rounded-xl border border-[var(--border)]"
-          >
-            <Image
-              src="/images/events-centerpiece.png"
-              alt="Abstract green digital network representing CIPHER events and collaboration"
-              width={1200}
-              height={600}
-              className="h-[280px] w-full object-cover opacity-80 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 sm:h-[360px]"
-              priority={false}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050705] via-[#050705]/30 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-6 sm:p-8">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--matrix)]">
-                Flagship
-              </span>
-              <h3 className="mt-1 font-display text-3xl text-foreground text-glow sm:text-4xl">
-                Build. Break. Ship.
-              </h3>
-              <p className="mt-2 max-w-md font-mono text-sm text-muted-foreground">
-                A full calendar of hands-on events — from hackathons to deep-dive
-                workshops. Details drop soon.
-              </p>
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="mt-6 grid gap-5 md:grid-cols-2">
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
           {EVENTS.map((e, i) => (
             <Reveal key={e.title} delay={i * 0.1}>
               <article
@@ -85,6 +74,43 @@ export function Events() {
               </article>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-20">
+          <Reveal>
+            <SectionHeading label="archive" title="Activities" />
+          </Reveal>
+
+          <p className="mt-4 max-w-2xl font-mono text-sm leading-relaxed text-muted-foreground">
+            Hands-on workshops, industrial visits, and technical sessions run by the Cipher Association — spanning AI, blockchain, research tooling, and career prep.
+          </p>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {ACTIVITIES.map((a, i) => (
+              <Reveal key={a.href} delay={(i % 3) * 0.05}>
+                <a
+                  href={a.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="lens"
+                  className="group flex h-full items-start justify-between gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)]/50 p-4 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-[10px] leading-5 text-[var(--matrix)]">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="font-mono text-sm leading-snug text-foreground transition-colors group-hover:text-[var(--matrix)]">
+                      {a.title}
+                    </h3>
+                  </div>
+                  <ArrowUpRight
+                    size={15}
+                    className="mt-0.5 shrink-0 text-muted-foreground transition-colors group-hover:text-[var(--matrix)]"
+                  />
+                </a>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

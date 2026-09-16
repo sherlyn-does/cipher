@@ -2,6 +2,7 @@
 
 import { useReducedMotion } from 'motion/react'
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 
 type Bearer = {
   role: string
@@ -12,14 +13,59 @@ type Bearer = {
 export function LeadershipMarquee({ bearers }: { bearers: Bearer[] }) {
   const reduceMotion = useReducedMotion()
 
+  const scrollerRef = useRef<HTMLDivElement>(null)
+  // When the user is actively scrolling/dragging we pause the auto-scroll and
+  // resume it a short moment after they stop.
+  const pausedRef = useRef(false)
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   // Duplicate the list so the track can scroll seamlessly: when the first
   // copy has fully moved out of view, the second copy is in the exact same
-  // position, so resetting to 0 is invisible.
+  // position, so wrapping the scroll offset is invisible.
   const track = [...bearers, ...bearers]
+
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (!el || reduceMotion) return
+
+    let frame = 0
+    const speed = 0.5 // px per frame (~30px/s at 60fps)
+
+    const step = () => {
+      // The seamless loop point is exactly half of the total scroll width,
+      // because we render the list twice.
+      const half = el.scrollWidth / 2
+
+      if (!pausedRef.current) {
+        el.scrollLeft += speed
+      }
+
+      // Keep scrollLeft within the first copy so both auto-scroll and manual
+      // scroll wrap around forever without hitting an edge.
+      if (el.scrollLeft >= half) {
+        el.scrollLeft -= half
+      } else if (el.scrollLeft <= 0) {
+        el.scrollLeft += half
+      }
+
+      frame = requestAnimationFrame(step)
+    }
+
+    frame = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frame)
+  }, [reduceMotion])
+
+  const pauseAuto = () => {
+    pausedRef.current = true
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    resumeTimer.current = setTimeout(() => {
+      pausedRef.current = false
+    }, 1200)
+  }
 
   return (
     <div
-      className="group relative mt-14 overflow-hidden"
+      className="group relative mt-14"
       // Fade the edges so cards ease in/out instead of hard-clipping.
       style={{
         maskImage:
@@ -29,12 +75,11 @@ export function LeadershipMarquee({ bearers }: { bearers: Bearer[] }) {
       }}
     >
       <div
-        className="flex w-max gap-5"
-        style={{
-          animation: reduceMotion
-            ? undefined
-            : 'leadership-scroll 32s linear infinite',
-        }}
+        ref={scrollerRef}
+        className="no-scrollbar flex w-full cursor-grab gap-5 overflow-x-auto overscroll-x-contain"
+        onWheel={pauseAuto}
+        onPointerDown={pauseAuto}
+        onTouchMove={pauseAuto}
       >
         {track.map((b, i) => (
           <div
@@ -49,6 +94,7 @@ export function LeadershipMarquee({ bearers }: { bearers: Bearer[] }) {
                 fill
                 sizes="280px"
                 className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                draggable={false}
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050705] via-transparent to-transparent" />
             </div>
@@ -65,16 +111,12 @@ export function LeadershipMarquee({ bearers }: { bearers: Bearer[] }) {
       </div>
 
       <style jsx>{`
-        @keyframes leadership-scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            /* Move exactly one copy's width (half the doubled track).
-               The gap after the last of the first copy is included because
-               the track has gap between every item, keeping spacing even. */
-            transform: translateX(calc(-50% - 0.625rem));
-          }
+        .no-scrollbar {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>

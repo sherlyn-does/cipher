@@ -5,6 +5,7 @@ import { Calendar, ArrowUpRight } from 'lucide-react'
 import { SectionHeading } from '../section-heading'
 import { Reveal } from '../reveal'
 import { LumiereGalaModal } from '../lumiere-gala-modal'
+import { PromptOpsModal } from '../promptops-modal'
 
 const ACTIVITIES = [
   { title: 'Applied Machine Learning', href: 'https://sjec.ac.in/cipher/activity/applied-machine-learning' },
@@ -43,6 +44,7 @@ const EVENTS = [
 
 export function Events() {
   const [galaOpen, setGalaOpen] = useState(false)
+  const [promptOpsOpen, setPromptOpsOpen] = useState(false)
 
   return (
     <section id="events" className="relative border-t border-[var(--border)] py-24">
@@ -54,25 +56,32 @@ export function Events() {
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {EVENTS.map((e, i) => {
             const isGala = e.title === 'Lumière — The Gala'
+            const isPromptOps = e.title === 'PROMPT OPS-2K26'
+            const hasGallery = isGala || isPromptOps
+            const openModal = isGala
+              ? () => setGalaOpen(true)
+              : isPromptOps
+                ? () => setPromptOpsOpen(true)
+                : undefined
             return (
               <Reveal key={e.title} delay={i * 0.1}>
                 <article
                   data-cursor="lens"
-                  onClick={isGala ? () => setGalaOpen(true) : undefined}
-                  role={isGala ? 'button' : undefined}
-                  tabIndex={isGala ? 0 : undefined}
+                  onClick={openModal}
+                  role={hasGallery ? 'button' : undefined}
+                  tabIndex={hasGallery ? 0 : undefined}
                   onKeyDown={
-                    isGala
+                    hasGallery
                       ? (ev) => {
                           if (ev.key === 'Enter' || ev.key === ' ') {
                             ev.preventDefault()
-                            setGalaOpen(true)
+                            openModal?.()
                           }
                         }
                       : undefined
                   }
                   className={`group flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]/50 p-6 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow ${
-                    isGala ? 'cursor-pointer' : ''
+                    hasGallery ? 'cursor-pointer' : ''
                   }`}
                 >
                   <div className="mb-4 flex items-center justify-between">
@@ -90,7 +99,7 @@ export function Events() {
                     {e.desc}
                   </p>
                   <span className="mt-5 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-[var(--matrix)] opacity-0 transition-opacity group-hover:opacity-100">
-                    {isGala ? 'View gallery' : 'Details soon'} <ArrowUpRight size={13} />
+                    {hasGallery ? 'View gallery' : 'Details soon'} <ArrowUpRight size={13} />
                   </span>
                 </article>
               </Reveal>
@@ -137,6 +146,7 @@ export function Events() {
       </div>
 
       <LumiereGalaModal open={galaOpen} onClose={() => setGalaOpen(false)} />
+      <PromptOpsModal open={promptOpsOpen} onClose={() => setPromptOpsOpen(false)} />
     </section>
   )
 }

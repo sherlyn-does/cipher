@@ -5,21 +5,21 @@ import { Reveal, StaggerGroup, StaggerItem } from '../reveal'
 const VOICES = [
   {
     quote:
-      'CIPHER gives our students a space to experiment, fail fast, and grow into confident engineers. Placeholder quote — to be replaced.',
-    name: 'Head of Department',
-    role: 'CSE Department',
+      'Through associations, one\u2019s objective should be to achieve something not in the curriculum. This can be done by attending technical talks, visiting companies and by visual development.',
+    name: 'Mr. Praveen Udupa',
+    role: 'CIPHER 2014\u201315',
   },
   {
     quote:
-      'Watching students organize, lead, and build together is the most rewarding part of my role. Placeholder quote — to be replaced.',
-    name: 'Faculty Coordinator',
-    role: 'CIPHER Mentor',
+      'A student\u2019s life should have commitment, contribution and involvement in activities as it is for a limited period. This gives them a platform for the rest of their lives.',
+    name: 'Rev. Fr. Ajith Menezes',
+    role: 'CIPHER 2014\u201315',
   },
   {
     quote:
-      'From my first workshop to leading events, CIPHER shaped how I think and collaborate. Placeholder quote — to be replaced.',
-    name: 'Student President',
-    role: 'CIPHER',
+      'One can define the concepts by the apparent growth and improvement in functionality and usability of new devices in market using these approaches.',
+    name: 'Dr. Sreekanth N. S.',
+    role: 'CIPHER & CSI Inaugural 2018\u201319',
   },
 ]
 

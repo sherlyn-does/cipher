@@ -36,12 +36,12 @@ export function Join() {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#050705] via-transparent to-[#050705]" />
         <div className="relative mx-auto max-w-3xl px-5 text-center">
           <div className="mb-4 font-mono text-xs uppercase tracking-[0.4em] text-[var(--matrix)]">
-            // access request
+            // access club
           </div>
 
           <ScrambleText
             as="h2"
-            text="Decrypt your potential"
+            text="Join the Team"
             className="font-display text-4xl leading-tight text-foreground text-glow sm:text-5xl md:text-6xl"
           />
 

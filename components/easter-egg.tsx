@@ -24,17 +24,30 @@ export function EasterEgg() {
   useEffect(() => {
     let idx = 0
     const onKey = (e: KeyboardEvent) => {
-      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key
-      if (key === KONAMI[idx]) {
-        idx++
-        if (idx === KONAMI.length) {
-          setOpen(true)
-          idx = 0
-        }
-      } else {
-        idx = key === KONAMI[0] ? 1 : 0
-      }
+  const target = e.target as HTMLElement
+
+  if (
+    target.tagName === 'INPUT' ||
+    target.tagName === 'TEXTAREA' ||
+    target.isContentEditable
+  ) {
+    return
+  }
+
+  const rawKey = e.key ?? ''
+  const key = rawKey.length === 1 ? rawKey.toLowerCase() : rawKey
+
+  if (key === KONAMI[idx]) {
+    idx++
+
+    if (idx === KONAMI.length) {
+      setOpen(true)
+      idx = 0
     }
+  } else {
+    idx = key === KONAMI[0] ? 1 : 0
+  }
+}
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])

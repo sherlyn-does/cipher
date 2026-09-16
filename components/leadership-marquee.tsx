@@ -79,8 +79,7 @@ export function LeadershipMarquee({ bearers }: { bearers: Bearer[] }) {
         className="no-scrollbar flex w-full cursor-grab gap-5 overflow-x-auto overscroll-x-contain"
         onWheel={pauseAuto}
         onPointerDown={pauseAuto}
-        onTouchStart={pauseAuto}
-        onScroll={pauseAuto}
+        onTouchMove={pauseAuto}
       >
         {track.map((b, i) => (
           <div

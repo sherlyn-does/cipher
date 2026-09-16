@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { Calendar, ArrowUpRight } from 'lucide-react'
 import { SectionHeading } from '../section-heading'
 import { Reveal } from '../reveal'
+import { LumiereGalaModal } from '../lumiere-gala-modal'
 
 const ACTIVITIES = [
   { title: 'Applied Machine Learning', href: 'https://sjec.ac.in/cipher/activity/applied-machine-learning' },
@@ -40,6 +42,8 @@ const EVENTS = [
 ]
 
 export function Events() {
+  const [galaOpen, setGalaOpen] = useState(false)
+
   return (
     <section id="events" className="relative border-t border-[var(--border)] py-24">
       <div className="mx-auto max-w-6xl px-5">
@@ -48,32 +52,50 @@ export function Events() {
         </Reveal>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {EVENTS.map((e, i) => (
-            <Reveal key={e.title} delay={i * 0.1}>
-              <article
-                data-cursor="lens"
-                className="group flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]/50 p-6 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-[var(--matrix)]">
-                    <Calendar size={13} /> {e.tag}
+          {EVENTS.map((e, i) => {
+            const isGala = e.title === 'Lumière — The Gala'
+            return (
+              <Reveal key={e.title} delay={i * 0.1}>
+                <article
+                  data-cursor="lens"
+                  onClick={isGala ? () => setGalaOpen(true) : undefined}
+                  role={isGala ? 'button' : undefined}
+                  tabIndex={isGala ? 0 : undefined}
+                  onKeyDown={
+                    isGala
+                      ? (ev) => {
+                          if (ev.key === 'Enter' || ev.key === ' ') {
+                            ev.preventDefault()
+                            setGalaOpen(true)
+                          }
+                        }
+                      : undefined
+                  }
+                  className={`group flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)]/50 p-6 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow ${
+                    isGala ? 'cursor-pointer' : ''
+                  }`}
+                >
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-[var(--matrix)]">
+                      <Calendar size={13} /> {e.tag}
+                    </span>
+                    <span className="rounded border border-[var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                      {e.status}
+                    </span>
+                  </div>
+                  <h3 className="mb-2 font-display text-xl text-foreground transition-colors group-hover:text-[var(--matrix)]">
+                    {e.title}
+                  </h3>
+                  <p className="flex-1 font-mono text-sm leading-relaxed text-muted-foreground">
+                    {e.desc}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-[var(--matrix)] opacity-0 transition-opacity group-hover:opacity-100">
+                    {isGala ? 'View gallery' : 'Details soon'} <ArrowUpRight size={13} />
                   </span>
-                  <span className="rounded border border-[var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    {e.status}
-                  </span>
-                </div>
-                <h3 className="mb-2 font-display text-xl text-foreground transition-colors group-hover:text-[var(--matrix)]">
-                  {e.title}
-                </h3>
-                <p className="flex-1 font-mono text-sm leading-relaxed text-muted-foreground">
-                  {e.desc}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-[var(--matrix)] opacity-0 transition-opacity group-hover:opacity-100">
-                  Details soon <ArrowUpRight size={13} />
-                </span>
-              </article>
-            </Reveal>
-          ))}
+                </article>
+              </Reveal>
+            )
+          })}
         </div>
 
         <div className="mt-20">
@@ -113,6 +135,8 @@ export function Events() {
           </div>
         </div>
       </div>
+
+      <LumiereGalaModal open={galaOpen} onClose={() => setGalaOpen(false)} />
     </section>
   )
 }

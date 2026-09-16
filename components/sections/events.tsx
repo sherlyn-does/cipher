@@ -4,6 +4,26 @@ import { Calendar, ArrowUpRight } from 'lucide-react'
 import { SectionHeading } from '../section-heading'
 import { Reveal } from '../reveal'
 
+const ACTIVITIES = [
+  { title: 'Applied Machine Learning', href: 'https://sjec.ac.in/cipher/activity/applied-machine-learning' },
+  { title: 'Industrial Visit', href: 'https://sjec.ac.in/cipher/activity/industrial-visit-1' },
+  { title: 'LaTeX Tool', href: 'https://sjec.ac.in/cipher/activity/latex-tool' },
+  { title: 'Robotic Process Automation using UiPath', href: 'https://sjec.ac.in/cipher/activity/robotic-process-automation-design-and-development-using-uipath' },
+  { title: 'HackTO Future 20', href: 'https://sjec.ac.in/cipher/activity/hackto-future-20' },
+  { title: 'How to Win at the Sport of Programming', href: 'https://sjec.ac.in/cipher/activity/how-to-win-at-the-sport-of-programming' },
+  { title: 'Introduction to Google Crowdsource', href: 'https://sjec.ac.in/cipher/activity/introduction-to-google-crowdsource' },
+  { title: 'Educational Session on GitHub', href: 'https://sjec.ac.in/cipher/activity/educational-session-on-github' },
+  { title: 'Industrial Visit', href: 'https://sjec.ac.in/cipher/activity/industrial-visit' },
+  { title: 'UDAAN Mock Interview', href: 'https://sjec.ac.in/cipher/activity/udaan-mock-interview' },
+  { title: 'Freshers Onboarding Programme', href: 'https://sjec.ac.in/cipher/activity/freshers-onboarding-programme' },
+  { title: 'Projects Funded by KSCST', href: 'https://sjec.ac.in/cipher/activity/projects-funded-by-kscst' },
+  { title: 'Generative AI Tools for Research', href: 'https://sjec.ac.in/cipher/activity/generative-ai-tools-for-research' },
+  { title: 'Introduction to Blockchain: Solidity Workshop', href: 'https://sjec.ac.in/cipher/activity/introduction-to-blockchain-beginners-worskhop-on-solidity-programming' },
+  { title: 'Star UML', href: 'https://sjec.ac.in/cipher/activity/star-uml' },
+  { title: 'Generative AI: Custom Solutions using OpenAI', href: 'https://sjec.ac.in/cipher/activity/generative-ai-grafting-custom-solutions-for-your-needs-using-open-ai' },
+  { title: 'React.js and Node.js Workshop', href: 'https://sjec.ac.in/cipher/activity/reactjs-and-nodejs-workshop' },
+]
+
 const EVENTS = [
   {
     tag: 'Branch Gala',
@@ -54,6 +74,43 @@ export function Events() {
               </article>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-20">
+          <Reveal>
+            <SectionHeading label="archive" title="Activities" />
+          </Reveal>
+
+          <p className="mt-4 max-w-2xl font-mono text-sm leading-relaxed text-muted-foreground">
+            Hands-on workshops, industrial visits, and technical sessions run by the Cipher Association — spanning AI, blockchain, research tooling, and career prep.
+          </p>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {ACTIVITIES.map((a, i) => (
+              <Reveal key={a.href} delay={(i % 3) * 0.05}>
+                <a
+                  href={a.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="lens"
+                  className="group flex h-full items-start justify-between gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)]/50 p-4 transition-all duration-300 hover:border-[var(--matrix)] hover:box-glow"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-[10px] leading-5 text-[var(--matrix)]">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="font-mono text-sm leading-snug text-foreground transition-colors group-hover:text-[var(--matrix)]">
+                      {a.title}
+                    </h3>
+                  </div>
+                  <ArrowUpRight
+                    size={15}
+                    className="mt-0.5 shrink-0 text-muted-foreground transition-colors group-hover:text-[var(--matrix)]"
+                  />
+                </a>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -3,31 +3,14 @@
 import { motion } from 'motion/react'
 import { ArrowRight, Terminal } from 'lucide-react'
 import { MagneticButton } from '../magnetic-button'
-import CipherLogo from '../cipher-logo'
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col items-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
     >
-      {/* Interactive ASCII wordmark centerpiece.
-          The bottom edge is masked to transparent so the logo's grid + dark
-          backdrop dissolve into the fixed Waves layer behind the page,
-          instead of ending on a hard seam above the wave field. */}
-      <div
-        className="relative h-[58vh] min-h-[360px] w-full"
-        style={{
-          WebkitMaskImage:
-            'linear-gradient(to bottom, #000 55%, rgba(0,0,0,0.35) 80%, transparent 100%)',
-          maskImage:
-            'linear-gradient(to bottom, #000 55%, rgba(0,0,0,0.35) 80%, transparent 100%)',
-        }}
-      >
-        <CipherLogo height="100%" />
-      </div>
-
-      <div className="relative mx-auto -mt-10 w-full max-w-6xl px-5 pb-16">
+      <div className="relative mx-auto w-full max-w-6xl px-5 py-16">
         
 
         <motion.h1

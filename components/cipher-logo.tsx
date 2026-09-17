@@ -48,7 +48,7 @@ const css = `
   position:relative;
   width:100%;
   overflow:hidden;
-  background:radial-gradient(130% 120% at 50% 38%,#060a07 0%,#040604 60%,#020302 100%);
+  background:transparent;
   font-family:'Space Grotesk','Inter',system-ui,sans-serif;
   cursor:crosshair;
 }

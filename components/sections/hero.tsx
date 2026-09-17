@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import { ArrowRight, Terminal } from 'lucide-react'
 import { MagneticButton } from '../magnetic-button'
+import CipherLogo from '../cipher-logo'
 
 export function Hero() {
   return (
@@ -10,9 +11,11 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
     >
-      <div className="relative mx-auto w-full max-w-6xl px-5 py-16">
-        
+      <div className="pointer-events-none absolute inset-0">
+        <CipherLogo height="100%" />
+      </div>
 
+      <div className="relative mx-auto w-full max-w-6xl px-5 py-16">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

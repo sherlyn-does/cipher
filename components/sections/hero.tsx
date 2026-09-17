@@ -11,10 +11,20 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col items-center overflow-hidden"
     >
-      {/* Interactive ASCII wordmark centerpiece */}
-      <div className="relative h-[58vh] min-h-[360px] w-full">
+      {/* Interactive ASCII wordmark centerpiece.
+          The bottom edge is masked to transparent so the logo's grid + dark
+          backdrop dissolve into the fixed Waves layer behind the page,
+          instead of ending on a hard seam above the wave field. */}
+      <div
+        className="relative h-[58vh] min-h-[360px] w-full"
+        style={{
+          WebkitMaskImage:
+            'linear-gradient(to bottom, #000 55%, rgba(0,0,0,0.35) 80%, transparent 100%)',
+          maskImage:
+            'linear-gradient(to bottom, #000 55%, rgba(0,0,0,0.35) 80%, transparent 100%)',
+        }}
+      >
         <CipherLogo height="100%" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#050705]" />
       </div>
 
       <div className="relative mx-auto -mt-10 w-full max-w-6xl px-5 pb-16">

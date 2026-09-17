@@ -389,13 +389,15 @@ export function CursorPhotoTrail({
           letter-spacing: -0.02em;
           line-height: 1;
           white-space: nowrap;
-          color: var(--matrix);
+          /* Brighter phosphor-green so it reads as glowing terminal text
+             rather than a dark cutout. */
+          color: #5cffab;
           /* Sized in cqw (% of THIS box's own width) instead of vw, so it
              fits a narrow side column instead of using full-viewport sizing. */
           font-size: clamp(2rem, 22cqw, 7rem);
-          mix-blend-mode: multiply; /* dark cutout over photos, plain color over empty space */
+          mix-blend-mode: screen; /* additive green glow over photos and empty space alike */
           user-select: none;
-          animation: cpt-glow-pulse 4s ease-in-out infinite, cpt-glitch-shift 7s ease-in-out infinite;
+          animation: cpt-glow-pulse 4s ease-in-out infinite, cpt-glitch-shift 3.6s steps(1, end) infinite;
         }
         @keyframes cpt-glow-pulse {
           0%,
@@ -408,21 +410,42 @@ export function CursorPhotoTrail({
               0 0 26px color-mix(in srgb, var(--matrix) 35%, transparent);
           }
         }
-        /* Horizontal shift-distortion during the brief glitch window only. */
+        /* Horizontal shift-distortion — several short glitch windows per
+           loop so the wordmark keeps stuttering instead of once every 7s. */
         @keyframes cpt-glitch-shift {
           0%,
-          92%,
+          21%,
+          25%,
+          49%,
+          52%,
+          78%,
+          82%,
           100% {
-            transform: translateX(0);
+            transform: translate(0, 0);
           }
-          93% {
-            transform: translateX(-3px);
+          22% {
+            transform: translate(-4px, 1px);
           }
-          94% {
-            transform: translateX(3px);
+          23% {
+            transform: translate(4px, -1px);
           }
-          95% {
-            transform: translateX(0);
+          24% {
+            transform: translate(-2px, 0);
+          }
+          50% {
+            transform: translate(3px, -1px);
+          }
+          51% {
+            transform: translate(-3px, 1px);
+          }
+          79% {
+            transform: translate(-5px, 0);
+          }
+          80% {
+            transform: translate(3px, 1px);
+          }
+          81% {
+            transform: translate(-1px, 0);
           }
         }
         /* RGB-split glitch slivers — subtle variants of the same matrix
@@ -437,59 +460,96 @@ export function CursorPhotoTrail({
           opacity: 0;
         }
         .cpt-label::before {
-          color: color-mix(in srgb, var(--matrix) 65%, #7ffbe0 35%);
-          animation: cpt-glitch-1 7s ease-in-out infinite;
+          color: color-mix(in srgb, var(--matrix) 55%, #7ffbe0 45%);
+          animation: cpt-glitch-1 3.6s steps(1, end) infinite;
         }
         .cpt-label::after {
-          color: color-mix(in srgb, var(--matrix) 55%, #04120c 45%);
-          animation: cpt-glitch-2 7s ease-in-out infinite;
+          color: color-mix(in srgb, var(--matrix) 60%, #04120c 40%);
+          animation: cpt-glitch-2 3.6s steps(1, end) infinite;
         }
+        /* Cyan-green sliver — fires in the same windows as cpt-glitch-shift. */
         @keyframes cpt-glitch-1 {
           0%,
-          92%,
+          21%,
+          25%,
+          49%,
+          53%,
+          78%,
+          83%,
           100% {
             opacity: 0;
             transform: translate(0, 0);
             clip-path: inset(0 0 100% 0);
           }
-          93% {
+          22% {
+            opacity: 0.75;
+            transform: translate(-4px, 0);
+            clip-path: inset(6% 0 55% 0);
+          }
+          24% {
             opacity: 0.55;
-            transform: translate(-2px, 0);
-            clip-path: inset(8% 0 55% 0);
+            transform: translate(4px, 0);
+            clip-path: inset(52% 0 8% 0);
           }
-          94% {
-            opacity: 0.4;
-            transform: translate(2px, 0);
-            clip-path: inset(58% 0 6% 0);
+          50% {
+            opacity: 0.65;
+            transform: translate(3px, 0);
+            clip-path: inset(22% 0 46% 0);
           }
-          95% {
-            opacity: 0;
-            transform: translate(0, 0);
-            clip-path: inset(0 0 100% 0);
+          52% {
+            opacity: 0.45;
+            transform: translate(-3px, 0);
+            clip-path: inset(46% 0 22% 0);
+          }
+          79% {
+            opacity: 0.7;
+            transform: translate(-5px, 0);
+            clip-path: inset(10% 0 60% 0);
+          }
+          82% {
+            opacity: 0.5;
+            transform: translate(3px, 0);
+            clip-path: inset(60% 0 10% 0);
           }
         }
+        /* Deep-green sliver, offset a hair from the cyan one for RGB-split. */
         @keyframes cpt-glitch-2 {
           0%,
-          92%,
+          21%,
+          26%,
+          49%,
+          53%,
+          78%,
+          83%,
           100% {
             opacity: 0;
             transform: translate(0, 0);
             clip-path: inset(100% 0 0 0);
           }
-          93.5% {
-            opacity: 0.45;
-            transform: translate(2px, 0);
+          23% {
+            opacity: 0.6;
+            transform: translate(4px, 0);
             clip-path: inset(35% 0 35% 0);
           }
-          94.5% {
-            opacity: 0.35;
-            transform: translate(-2px, 0);
+          25% {
+            opacity: 0.45;
+            transform: translate(-4px, 0);
             clip-path: inset(4% 0 64% 0);
           }
-          95.5% {
-            opacity: 0;
-            transform: translate(0, 0);
-            clip-path: inset(100% 0 0 0);
+          51% {
+            opacity: 0.55;
+            transform: translate(-3px, 0);
+            clip-path: inset(48% 0 20% 0);
+          }
+          80% {
+            opacity: 0.6;
+            transform: translate(4px, 0);
+            clip-path: inset(30% 0 40% 0);
+          }
+          81% {
+            opacity: 0.45;
+            transform: translate(-2px, 0);
+            clip-path: inset(66% 0 6% 0);
           }
         }
 

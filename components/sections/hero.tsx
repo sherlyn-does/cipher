@@ -11,7 +11,7 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col items-center overflow-hidden"
     >
-      <div className="pointer-events-none relative w-full">
+      <div className="pointer-events-none relative w-full pt-24 sm:pt-28">
         <CipherLogo height="40vh" />
       </div>
 

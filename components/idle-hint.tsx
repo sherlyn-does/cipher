@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 
-const IDLE_MS = 10000
+const IDLE_MS = 3000
 
 export function IdleHint() {
   const [visible, setVisible] = useState(false)

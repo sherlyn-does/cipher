@@ -11,15 +11,11 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col items-center overflow-hidden"
     >
-      {/* Interactive ASCII wordmark centerpiece */}
-      <div className="relative h-[58vh] min-h-[360px] w-full">
-        <CipherLogo height="100%" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#050705]" />
+      <div className="pointer-events-none relative w-full pt-24 sm:pt-28">
+        <CipherLogo height="40vh" />
       </div>
 
-      <div className="relative mx-auto -mt-10 w-full max-w-6xl px-5 pb-16">
-        
-
+      <div className="relative mx-auto w-full max-w-6xl px-5 pb-16">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

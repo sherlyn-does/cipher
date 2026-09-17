@@ -307,9 +307,16 @@ export function Waves({
       if (touch) updateMouse(touch.clientX, touch.clientY)
     }
     function updateMouse(x: number, y: number) {
+      // getBoundingClientRect() is measured fresh on every call, so it
+      // already reflects the current scroll position. `y - b.top` alone
+      // is the cursor's position relative to the container's top-left,
+      // scroll-adjusted. Adding window.scrollY/offsetTop on top of that
+      // double-counts scroll and pushes mouse.y further and further off
+      // as the page scrolls, which is why the effect stopped reacting
+      // once you'd scrolled past the About section.
       const b = container!.getBoundingClientRect()
       mouse.x = x - b.left
-      mouse.y = y - b.top + window.scrollY - container!.offsetTop
+      mouse.y = y - b.top
       if (!mouse.set) {
         mouse.sx = mouse.x
         mouse.sy = mouse.y

@@ -9,13 +9,13 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <CipherLogo height="100%" />
+      <div className="pointer-events-none relative w-full">
+        <CipherLogo height="40vh" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 py-16">
+      <div className="relative mx-auto w-full max-w-6xl px-5 pb-16">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

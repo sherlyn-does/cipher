@@ -373,9 +373,8 @@ export function CursorPhotoTrail({
           display: inline-block;
           transform: scale(calc(1 + var(--cpt-boost, 0) * 0.045))
             translateX(calc(var(--cpt-boost, 0) * 5px - 2.5px));
-          filter: drop-shadow(0 0 calc(4px + var(--cpt-boost, 0) * 12px) var(--matrix));
-          transition: transform 260ms ease-out, filter 260ms ease-out;
-          will-change: transform, filter;
+          transition: transform 260ms ease-out;
+          will-change: transform;
         }
 
         /* Base label: color, readable at all times, plus a slow glow pulse
@@ -389,26 +388,13 @@ export function CursorPhotoTrail({
           letter-spacing: -0.02em;
           line-height: 1;
           white-space: nowrap;
-          /* Brighter phosphor-green so it reads as glowing terminal text
-             rather than a dark cutout. */
-          color: #5cffab;
+          /* Plain white wordmark — no glow, just the glitch. */
+          color: #ffffff;
           /* Sized in cqw (% of THIS box's own width) instead of vw, so it
              fits a narrow side column instead of using full-viewport sizing. */
           font-size: clamp(2rem, 22cqw, 7rem);
-          mix-blend-mode: screen; /* additive green glow over photos and empty space alike */
           user-select: none;
-          animation: cpt-glow-pulse 4s ease-in-out infinite, cpt-glitch-shift 3.6s steps(1, end) infinite;
-        }
-        @keyframes cpt-glow-pulse {
-          0%,
-          100% {
-            text-shadow: 0 0 8px color-mix(in srgb, var(--matrix) 55%, transparent),
-              0 0 18px color-mix(in srgb, var(--matrix) 22%, transparent);
-          }
-          50% {
-            text-shadow: 0 0 13px color-mix(in srgb, var(--matrix) 75%, transparent),
-              0 0 26px color-mix(in srgb, var(--matrix) 35%, transparent);
-          }
+          animation: cpt-glitch-shift 3.6s steps(1, end) infinite;
         }
         /* Horizontal shift-distortion — several short glitch windows per
            loop so the wordmark keeps stuttering instead of once every 7s. */
@@ -448,9 +434,9 @@ export function CursorPhotoTrail({
             transform: translate(-1px, 0);
           }
         }
-        /* RGB-split glitch slivers — subtle variants of the same matrix
-           green (never a different color family), invisible except during
-           the brief spike a few times a minute. */
+        /* RGB-split glitch slivers — light grey/white variants so the
+           wordmark stutters without picking up a color glow, invisible
+           except during the brief spike a few times a minute. */
         .cpt-label::before,
         .cpt-label::after {
           content: attr(data-text);
@@ -460,14 +446,14 @@ export function CursorPhotoTrail({
           opacity: 0;
         }
         .cpt-label::before {
-          color: color-mix(in srgb, var(--matrix) 55%, #7ffbe0 45%);
+          color: #ffffff;
           animation: cpt-glitch-1 3.6s steps(1, end) infinite;
         }
         .cpt-label::after {
-          color: color-mix(in srgb, var(--matrix) 60%, #04120c 40%);
+          color: #9a9a9a;
           animation: cpt-glitch-2 3.6s steps(1, end) infinite;
         }
-        /* Cyan-green sliver — fires in the same windows as cpt-glitch-shift. */
+        /* Light sliver — fires in the same windows as cpt-glitch-shift. */
         @keyframes cpt-glitch-1 {
           0%,
           21%,
@@ -596,11 +582,9 @@ export function CursorPhotoTrail({
           .cpt-label-reactive {
             transition: none;
             transform: none;
-            filter: drop-shadow(0 0 6px var(--matrix));
           }
           .cpt-label {
             animation: none;
-            text-shadow: 0 0 10px color-mix(in srgb, var(--matrix) 55%, transparent);
           }
           .cpt-label::before,
           .cpt-label::after {

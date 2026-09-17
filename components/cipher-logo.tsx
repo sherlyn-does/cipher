@@ -120,7 +120,7 @@ export default function CipherLogo({ height = "100vh" }: CipherLogoProps) {
 
       const small = W < 768;
 
-      CELL_SIZE = small ? 6 : 8;
+      CELL_SIZE = small ? 9 : 8;
       CELL_GAP = small ? 1 : 2;
       CELL_STEP = CELL_SIZE + CELL_GAP;
 

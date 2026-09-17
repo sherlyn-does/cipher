@@ -69,7 +69,7 @@ export function IdleHint() {
           transition={{ duration: 0.4 }}
         >
           <p className="font-mono text-[11px] tracking-wide text-muted-foreground/60">
-            Try this: ↑ ↑ ↓ ↓ ← → ← → B A
+            Try this: ↑ ↑ ↓ ↓ ← → ← → b a
           </p>
         </motion.div>
       )}

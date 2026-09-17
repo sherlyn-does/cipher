@@ -3,14 +3,27 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 
-const IDLE_MS = 5000
+const IDLE_MS = 10000
 
-/** Shows a subtle text hint after 13s of no user activity, nudging toward the Konami code. */
 export function IdleHint() {
   const [visible, setVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) return
+
     const startTimer = () => {
       if (timerRef.current) clearTimeout(timerRef.current)
       timerRef.current = setTimeout(() => setVisible(true), IDLE_MS)
@@ -28,6 +41,7 @@ export function IdleHint() {
       'touchstart',
       'wheel',
     ]
+
     events.forEach((event) =>
       window.addEventListener(event, handleActivity, { passive: true })
     )
@@ -36,9 +50,13 @@ export function IdleHint() {
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)
-      events.forEach((event) => window.removeEventListener(event, handleActivity))
+      events.forEach((event) =>
+        window.removeEventListener(event, handleActivity)
+      )
     }
-  }, [])
+  }, [isMobile])
+
+  if (isMobile) return null
 
   return (
     <AnimatePresence>

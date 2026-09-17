@@ -167,9 +167,9 @@ function BootScreen({ onReady }: { onReady: () => void }) {
           setTyped((t) => [...t, raw])
           setCurrent('')
           setLineIndex((n) => n + 1)
-        }, 180)
+        }, 50)
       }
-    }, 34)
+    }, 10)
     return () => clearInterval(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lineIndex, progress >= 99.5])
@@ -332,21 +332,9 @@ function DecryptReveal({ onResolved }: { onResolved: () => void }) {
           </span>
         ))}
       </div>
-      <p className="mt-6 font-mono text-xs uppercase tracking-[0.4em] text-[var(--matrix-dim)] sm:text-sm">
-        move to decrypt
-      </p>
+      
 
-      {/* magnifying lens visual */}
-      <div
-        ref={lensRef}
-        aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 h-[120px] w-[120px] rounded-full border-2 border-[var(--matrix)] opacity-0"
-        style={{
-          boxShadow:
-            'inset 0 0 30px rgba(0,255,65,0.25), 0 0 30px -4px var(--matrix-glow)',
-          background: 'rgba(0,255,65,0.04)',
-        }}
-      />
+      
     </motion.div>
   )
 }

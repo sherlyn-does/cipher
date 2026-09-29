@@ -1,6 +1,6 @@
 # CIPHER — Student Association Website
 
-Official website for **CIPHER**, the student association of the Department of Computer Science & Engineering.
+Official website for **CIPHER**, the student association of the Department of Computer Science & Engineering ,SJEC Mangalore.
 
 CIPHER serves as a platform for students to nurture their technical and interpersonal skills through innovative and collaborative activities, bridging the gap between academic knowledge and practical application.
 

@@ -16,7 +16,7 @@ CIPHER serves as a platform for students to nurture their technical and interper
 - **Matrix-inspired theme** — black background with phosphor-green accent color, custom `matrix.ttf` display font for headings, optional low-opacity digital-rain background motif.
 - **Scroll-triggered animations** — sections fade/rise into view as the user scrolls; section headings use a text-scramble/decode effect on entry.
 - **Custom cursor & micro-interactions** — hover states on buttons, cards, and nav links inspired by activetheory.net's interaction language.
-- **Hidden easter egg** — a small hidden interaction for curious visitors (verify/trigger and confirm payoff before launch).
+- **Hidden easter egg** — (konami code) a small hidden interaction for curious visitors (verify/trigger and confirm payoff before launch).
 
 ## Sections
 
